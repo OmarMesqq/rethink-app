@@ -185,7 +185,7 @@ class PersistentState(context: Context) : SimpleKrate(context), KoinComponent {
     // user set among AppConfig.DnsType enum; RETHINK_REMOTE is default which is Rethink-DoH
     var dnsType by
         intPref("dns_type")
-            .withDefault<Int>(AppConfig.DnsType.RETHINK_REMOTE.type)
+            .withDefault<Int>(AppConfig.DnsType.DOH.type)
 
     // whether the app must attempt to startup on reboot if it was running before shutdown
     var prefAutoStartBootUp by booleanPref("auto_start_on_boot").withDefault<Boolean>(true)

@@ -332,10 +332,8 @@ class Constants {
         val DEFAULT_DNS_LIST =
             listOf(
                 DefaultDnsServer(0, "System", "", "None"),
-                DefaultDnsServer(1, "Rethink", "https://zero.rethinkdns.com/dns-query", "DoH"),
-                DefaultDnsServer(2, "Google", "https://dns.google/dns-query", "DoH"),
-                DefaultDnsServer(3, "Cloudflare", "https://cloudflare-dns.com/dns-query", "DoH"),
-                DefaultDnsServer(4, "Quad9", "https://dns.quad9.net/dns-query", "DoH")
+                DefaultDnsServer(1, "Quad9", "https://dns.quad9.net/dns-query", "DoH"),
+                DefaultDnsServer(2, "Cloudflare", "https://cloudflare-dns.com/dns-query", "DoH"),
             )
 
         // pcap folder name
@@ -371,14 +369,14 @@ class Constants {
 
         val ip4probes =
             listOf(
-                "216.239.32.27", // google org
+                // "216.239.32.27", // google org
                 "104.16.132.229", // cloudflare
             )
 
 
         val ip6probes =
             listOf(
-                "2001:4860:4802:32::1b", // google org
+                // "2001:4860:4802:32::1b", // google org
                 "2606:4700::6810:84e5", // cloudflare
             )
 

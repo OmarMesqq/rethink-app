@@ -3,49 +3,9 @@
     <string-array name="urls">
         <item>@string/url0</item>
         <item>@string/url1</item>
-        <item>@string/url2</item>
-        <item>@string/url3</item>
-        <item>@string/url4</item>
-        <item>@string/url5</item>
-        <item>@string/url6</item>
-        <item>@string/url7</item>
-        <item>@string/url8</item>
-        <item>@string/url9</item>
-        <item>@string/url10</item>
-        <item>@string/url11</item>
-        <item>@string/url12</item>
-        <item>@string/url13</item>
-        <item>@string/url14</item>
-        <item>@string/url15</item>
-        <item>@string/url16</item>
-        <item>@string/url17</item>
-        <item>@string/url18</item>
-        <item>@string/url19</item>
-        <item>@string/url20</item>
-        <item>@string/url21</item>
     </string-array>
     <string-array name="ips">
         <item>@string/ips0</item>
         <item>@string/ips1</item>
-        <item>@string/ips2</item>
-        <item>@string/ips3</item>
-        <item>@string/ips4</item>
-        <item>@string/ips5</item>
-        <item>@string/ips6</item>
-        <item>@string/ips7</item>
-        <item>@string/ips8</item>
-        <item>@string/ips9</item>
-        <item>@string/ips10</item>
-        <item>@string/ips11</item>
-        <item>@string/ips12</item>
-        <item>@string/ips13</item>
-        <item>@string/ips14</item>
-        <item>@string/ips15</item>
-        <item>@string/ips16</item>
-        <item>@string/ips17</item>
-        <item>@string/ips18</item>
-        <item>@string/ips19</item>
-        <item>@string/ips20</item>
-        <item>@string/ips21</item>
     </string-array>
 </resources>

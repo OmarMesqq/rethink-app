@@ -55,7 +55,7 @@ class RetrofitManager {
         enum class OkHttpDnsType {
             DEFAULT,
             CLOUDFLARE,
-            GOOGLE,
+            // GOOGLE,
             SYSTEM_DNS,
             FALLBACK_DNS
         }
@@ -161,17 +161,17 @@ class RetrofitManager {
                             )
                             .includeIPv6(true)
                             .build()
-                        OkHttpDnsType.GOOGLE -> DnsOverHttps.Builder()
-                            .client(bootstrapClient)
-                            .url("https://dns.google/dns-query".toHttpUrl())
-                            .bootstrapDnsHosts(
-                                getByIp("8.8.8.8"),
-                                getByIp("8.8.4.4"),
-                                getByIp("2001:4860:4860:0:0:0:0:8888"),
-                                getByIp("2001:4860:4860:0:0:0:0:8844")
-                            )
-                            .includeIPv6(true)
-                            .build()
+                        // OkHttpDnsType.GOOGLE -> DnsOverHttps.Builder()
+                        //     .client(bootstrapClient)
+                        //     .url("https://dns.google/dns-query".toHttpUrl())
+                        //     .bootstrapDnsHosts(
+                        //         getByIp("8.8.8.8"),
+                        //         getByIp("8.8.4.4"),
+                        //         getByIp("2001:4860:4860:0:0:0:0:8888"),
+                        //         getByIp("2001:4860:4860:0:0:0:0:8844")
+                        //     )
+                        //     .includeIPv6(true)
+                        //     .build()
                         OkHttpDnsType.SYSTEM_DNS -> Dns.SYSTEM
                         OkHttpDnsType.FALLBACK_DNS -> null
                     }
