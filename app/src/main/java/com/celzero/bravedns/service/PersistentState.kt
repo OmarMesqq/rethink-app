@@ -158,7 +158,7 @@ class PersistentState(context: Context) : SimpleKrate(context), KoinComponent {
 
     // whether to drop packets when the source app originating the reqs couldn't be determined
     private var _blockUnknownConnections by
-        booleanPref("block_unknown_connections").withDefault<Boolean>(false)
+        booleanPref("block_unknown_connections").withDefault<Boolean>(true)
 
     // whether user has enable on-device blocklists
     var blocklistEnabled by
@@ -234,7 +234,7 @@ class PersistentState(context: Context) : SimpleKrate(context), KoinComponent {
     var showWhatsNewChip by booleanPref("show_whats_new_chip").withDefault<Boolean>(false)
 
     // block dns which are not resolved by app
-    private var _disallowDnsBypass by booleanPref("disallow_dns_bypass").withDefault<Boolean>(false)
+    private var _disallowDnsBypass by booleanPref("disallow_dns_bypass").withDefault<Boolean>(true)
 
     // trap all packets on port 53 to be sent to a dns endpoint or just the packets sent to vpn's
     // dns-ip
@@ -329,7 +329,7 @@ class PersistentState(context: Context) : SimpleKrate(context), KoinComponent {
     var goLoggerLevel by longPref("go_logger_level").withDefault<Long>(3)
 
     // log lifespan, default 7 days
-    var logLifespan by longPref("log_lifespan").withDefault<Long>(LogLifespan.SEVEN_DAYS.id)
+    var logLifespan by longPref("log_lifespan").withDefault<Long>(LogLifespan.TWELVE_HOURS.id)
 
     // firewall bubble feature toggle
     var firewallBubbleEnabled by booleanPref("pref_firewall_bubble_enabled").withDefault<Boolean>(false)
@@ -392,7 +392,7 @@ class PersistentState(context: Context) : SimpleKrate(context), KoinComponent {
     var dialTimeoutSec by intPref("dial_timeout_sec").withDefault<Int>(0)
 
     // treat only mobile data as metered
-    var treatOnlyMobileNetworkAsMetered by booleanPref("treat_only_mobile_nw_as_metered").withDefault<Boolean>(false)
+    var treatOnlyMobileNetworkAsMetered by booleanPref("treat_only_mobile_nw_as_metered").withDefault<Boolean>(true)
 
     var autoDialsParallel by booleanPref("auto_dials_parallel").withDefault<Boolean>(false)
 
@@ -682,10 +682,8 @@ class PersistentState(context: Context) : SimpleKrate(context), KoinComponent {
         .withDefault(setOf(
             ResourceRecordTypes.A.name,
             ResourceRecordTypes.AAAA.name,
-            ResourceRecordTypes.CNAME.name,
             ResourceRecordTypes.HTTPS.name,
-            ResourceRecordTypes.SVCB.name,
-            ResourceRecordTypes.IPSECKEY.name
+            ResourceRecordTypes.TXT.name,
         ).joinToString(","))
 
     // Auto mode for DNS record types - when enabled, all record types are allowed
@@ -778,7 +776,7 @@ class PersistentState(context: Context) : SimpleKrate(context), KoinComponent {
     // maximum memory the go engine can consume in bytes (ideally value*1024*1024)
     var goMaxMemory by longPref(GO_MAX_MEMORY).withDefault<Long>(-1L)
 
-    var blockDnsForUnknownApp by booleanPref("block_dns_for_unknown_app").withDefault<Boolean>(false)
+    var blockDnsForUnknownApp by booleanPref("block_dns_for_unknown_app").withDefault<Boolean>(true)
 
     var showRethinkBlockNotification by booleanPref("show_rethink_block_notification").withDefault<Boolean>(true)
 }

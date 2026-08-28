@@ -45,7 +45,7 @@ object Logger : KoinComponent {
             _logLevel = value
         }
 
-    var uiLogLevel = LoggerLevel.ERROR.id
+    var uiLogLevel = LoggerLevel.USR.id
 
     const val LOG_TAG_APP_UPDATE = "NonStoreAppUpdater"
     const val LOG_TAG_VPN = "RethinkDnsVpn"
