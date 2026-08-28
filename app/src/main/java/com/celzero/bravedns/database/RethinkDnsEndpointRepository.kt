@@ -47,7 +47,7 @@ class RethinkDnsEndpointRepository(private val rethinkDnsEndpointDao: RethinkDns
     }
 
     suspend fun getDefaultRethinkEndpoint(): RethinkDnsEndpoint? {
-        return rethinkDnsEndpointDao.getDefaultRethinkEndpoint()
+        return null
     }
 
     suspend fun updateConnectionDefault() {

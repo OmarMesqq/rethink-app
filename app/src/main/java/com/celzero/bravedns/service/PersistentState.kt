@@ -198,7 +198,7 @@ class PersistentState(context: Context) : SimpleKrate(context), KoinComponent {
         booleanPref("background_mode").withDefault<Boolean>(false)
 
     // whether to check for app updates once-a-week (on website / play-store builds)
-    var checkForAppUpdate by booleanPref("check_for_app_update").withDefault<Boolean>(true)
+    var checkForAppUpdate by booleanPref("check_for_app_update").withDefault<Boolean>(false)
 
     // last connected dns label name and url
     var connectedDnsName by
@@ -231,7 +231,7 @@ class PersistentState(context: Context) : SimpleKrate(context), KoinComponent {
 
     // whether to show "what's new" chip on the homescreen, usually
     // shown after a update and until the user dismisses it
-    var showWhatsNewChip by booleanPref("show_whats_new_chip").withDefault<Boolean>(true)
+    var showWhatsNewChip by booleanPref("show_whats_new_chip").withDefault<Boolean>(false)
 
     // block dns which are not resolved by app
     private var _disallowDnsBypass by booleanPref("disallow_dns_bypass").withDefault<Boolean>(false)
@@ -382,7 +382,7 @@ class PersistentState(context: Context) : SimpleKrate(context), KoinComponent {
     var useSystemDnsForUndelegatedDomains by booleanPref("use_system_dns_for_undelegated_domains").withDefault<Boolean>(false)
 
     // different modes the rpn proxy can function, see enum RpnMode
-    var rpnMode by intPref("rpn_mode").withDefault<Int>(1)
+    var rpnMode by intPref("rpn_mode").withDefault<Int>(0)
 
     // current rpn state, see enum RpnState
     var rpnState by intPref("rpn_state").withDefault<Int>(RpnProxyManager.RpnState.DISABLED.id)

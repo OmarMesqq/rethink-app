@@ -28,18 +28,18 @@ class Constants {
         const val DOWNLOAD_BASE_URL = "https://dl.rethinkdns.com"
 
         // rethink base & fallback url for rpn (prod & test)
-        const val RPN_BASE_URL = "https://svc.rethinkdns.com"
-        const val RPN_FALLBACK_URL = "https://svc.nile.workers.dev"
+        const val RPN_BASE_URL = ""
+        const val RPN_FALLBACK_URL = ""
 
-        const val RPN_TEST_BASE_URL = "https://redir.nile.workers.dev"
-        const val RPN_TEST_FALLBACK_URL = "https://redir.rethinkdns.com"
+        const val RPN_TEST_BASE_URL = ""
+        const val RPN_TEST_FALLBACK_URL = ""
 
         // base url for ipinfo download
         const val IP_INFO_BASE_URL = "https://dl.rethinkdns.com/ip/"
 
         const val FILE_TAG = "filetag.json"
 
-        const val ALPHA_UPDATE_CHECK_URL = "https://github.com/celzero/rethink-app/actions/workflows/nightly.yml"
+        const val ALPHA_UPDATE_CHECK_URL = ""
 
         // file names which are downloaded as part of on-device blocklists
         val ONDEVICE_BLOCKLIST_FILE_TAG = File.separator + FILE_TAG
@@ -71,8 +71,7 @@ class Constants {
         const val ONDEVICE_BLOCKLIST_UPDATE_CHECK_PARAMETER_VCODE = "vcode="
 
         // url to check if there is app-update is available (this is for website version only)
-        const val RETHINK_APP_UPDATE_CHECK =
-            "$DOWNLOAD_BASE_URL/update/app?$ONDEVICE_BLOCKLIST_UPDATE_CHECK_PARAMETER_VCODE"
+        const val RETHINK_APP_UPDATE_CHECK = ""
 
         // The version tag value(response) for the update check (both on-device and app update)
         // TODO: have two different response versions for blocklist update and app update
@@ -133,25 +132,25 @@ class Constants {
         const val FILETAG_TEMP_DOWNLOAD_URL = "blocklists"
 
         // url to download the rethinkdns apk file
-        const val RETHINK_APP_DOWNLOAD_LINK = "https://rethinkdns.com/download"
+        const val RETHINK_APP_DOWNLOAD_LINK = ""
 
         // base-url for rethinkdns
-        const val RETHINK_BASE_URL_SKY = "https://sky.rethinkdns.com/"
-        const val RETHINK_BASE_URL_MAX = "https://max.rethinkdns.com/"
+        const val RETHINK_BASE_URL_SKY = ""
+        const val RETHINK_BASE_URL_MAX = ""
 
-        const val RETHINK_SEARCH_URL = "https://rethinkdns.com/search?s="
+        const val RETHINK_SEARCH_URL = ""
 
         // default filetag.json for remote blocklist (stored in assets folder) (v055z)
         const val PACKAGED_REMOTE_FILETAG_TIMESTAMP: Long = 1782341672020
 
         // rethinkdns sponsor link
-        const val RETHINKDNS_SPONSOR_LINK = "https://svc.rethinkdns.com/r/sponsor"
+        const val RETHINKDNS_SPONSOR_LINK = ""
 
         // base-url for bravedns
-        const val BRAVEDNS_DOMAIN = "bravedns.com"
+        const val BRAVEDNS_DOMAIN = ""
 
         // base-url for rethinkdns
-        const val RETHINKDNS_DOMAIN = "rethinkdns.com"
+        const val RETHINKDNS_DOMAIN = ""
 
         // json object constants received as part of update check
         // FIXME: Avoid usage of these parameters, map to POJO instead
@@ -323,10 +322,10 @@ class Constants {
             val type: String
         )
 
-        const val BLOCK_FREE_DNS_MAX = "https://max.rethinkdns.com/dns-query"
-        const val BLOCK_FREE_DNS_SKY = "https://sky.rethinkdns.com/dns-query"
+        const val BLOCK_FREE_DNS_MAX = ""
+        const val BLOCK_FREE_DNS_SKY = ""
 
-        const val BLOCK_FREE_DNS_ZERO = "https://zero.rethinkdns.com/dns-query"
+        const val BLOCK_FREE_DNS_ZERO = ""
 
         // all fallback dns servers should have the corresponding ip address in servers.xml
         val DEFAULT_DNS_LIST =

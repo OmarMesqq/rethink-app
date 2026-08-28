@@ -165,10 +165,10 @@ object RpnProxyManager : KoinComponent {
     private val subscriptionStateMachine: SubscriptionStateMachineV2 by inject()
     private val stateObserverJob = SupervisorJob()
     private val stateObserverScope = CoroutineScope(Dispatchers.IO + stateObserverJob)
-    private const val CD_DEFAULT_DNS = "tls://p0.freedns.controld.com"
-    private const val CD_PRIVACY_DNS = "tls://p2.freedns.controld.com"
-    private const val CD_PARENTAL_FILTER_DNS = "tls://family.freedns.controld.com"
-    private const val CD_SECURITY_FILTER_DNS = "tls://p1.freedns.controld.com"
+    private const val CD_DEFAULT_DNS = ""
+    private const val CD_PRIVACY_DNS = ""
+    private const val CD_PARENTAL_FILTER_DNS = ""
+    private const val CD_SECURITY_FILTER_DNS = ""
 
     init {
         io {

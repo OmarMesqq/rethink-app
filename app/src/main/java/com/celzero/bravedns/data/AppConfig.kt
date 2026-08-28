@@ -847,7 +847,7 @@ internal constructor(
     }
 
     suspend fun getRethinkDefaultEndpoint(): RethinkDnsEndpoint? {
-        return rethinkDnsEndpointRepository.getDefaultRethinkEndpoint()
+        return null
     }
 
     suspend fun getBlockFreeRethinkEndpoint(): String {
