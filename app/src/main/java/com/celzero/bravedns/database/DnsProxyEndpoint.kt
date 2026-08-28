@@ -72,7 +72,7 @@ class DnsProxyEndpoint {
     }
 
     fun isDeletable(): Boolean {
-        return isCustom && !isSelected
+        return !isSelected
     }
 
     fun getExplanationText(context: Context, appName: String): String {

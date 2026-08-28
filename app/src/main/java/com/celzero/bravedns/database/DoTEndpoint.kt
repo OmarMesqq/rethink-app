@@ -71,6 +71,6 @@ class DoTEndpoint {
     }
 
     fun isDeletable(): Boolean {
-        return isCustom && !isSelected
+        return !isSelected
     }
 }

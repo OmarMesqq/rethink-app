@@ -54,7 +54,7 @@ interface ODoHEndpointDAO {
 
     @Query("delete from ODoHEndpoint") fun clearAllData()
 
-    @Query("delete from ODoHEndpoint where id = :id and isCustom = 1")
+    @Query("delete from ODoHEndpoint where id = :id")
     fun deleteODoHEndpoint(id: Int)
 
     @Query("update ODoHEndpoint set isSelected = 0 where isSelected = 1")

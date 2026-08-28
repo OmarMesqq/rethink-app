@@ -58,7 +58,7 @@ interface DnsProxyEndpointDAO {
     @Query("select * from DNSProxyEndpoint where isSelected = 1")
     fun getSelectedProxy(): DnsProxyEndpoint?
 
-    @Query("select * from DNSProxyEndpoint where proxyName = 'Orbot' and isCustom = 0 LIMIT 1")
+    @Query("select * from DNSProxyEndpoint where proxyName = 'Orbot' LIMIT 1")
     fun getOrbotDnsEndpoint(): DnsProxyEndpoint?
 
     @Query("select * from DNSProxyEndpoint order by proxyName asc")

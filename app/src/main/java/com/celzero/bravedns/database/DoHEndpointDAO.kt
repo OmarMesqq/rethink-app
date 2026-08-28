@@ -50,7 +50,7 @@ interface DoHEndpointDAO {
 
     @Query("delete from DoHEndpoint") fun clearAllData()
 
-    @Query("delete from DoHEndpoint where id = :id and isCustom = 1") fun deleteDoHEndpoint(id: Int)
+    @Query("delete from DoHEndpoint where id = :id") fun deleteDoHEndpoint(id: Int)
 
     @Query("update DoHEndpoint set isSelected = 0 where isSelected = 1")
     fun removeConnectionStatus()
@@ -59,7 +59,7 @@ interface DoHEndpointDAO {
     @Query("select * from DoHEndpoint where isSelected = 1")
     fun getConnectedDoH(): DoHEndpoint?
 
-    @Query("select * from DoHEndpoint where isCustom = 0")
+    @Query("select * from DoHEndpoint")
     fun getAllDefaultDoHEndpoints(): List<DoHEndpoint>
 
     @Query("select * from DoHEndpoint order by dohName asc")

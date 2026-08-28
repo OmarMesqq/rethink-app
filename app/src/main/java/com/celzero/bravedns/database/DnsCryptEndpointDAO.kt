@@ -48,7 +48,7 @@ interface DnsCryptEndpointDAO {
 
     @Query("delete from DNSCryptEndpoint") fun clearAllData()
 
-    @Query("delete from DNSCryptEndpoint where id = :id and isCustom = 1")
+    @Query("delete from DNSCryptEndpoint where id = :id")
     fun deleteDNSCryptEndpoint(id: Int)
 
     @Query("update DNSCryptEndpoint set isSelected = 0 where isSelected = 1")
