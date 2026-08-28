@@ -26,8 +26,8 @@ def alphaBuild = taskNames.contains("alpha")
 // check for fdroidserver value is set in system env
 def fdroidBuildServer = System.getenv("fdroidserver")
 def isFdroidBuildServer = fdroidBuildServer != null && !fdroidBuildServer.isEmpty() && fdroidBuildServer != "null"
-def deGoogled = !apkBuild || fdroidBuild || isFdroidBuildServer || alphaBuild
-def shouldSplit = !alphaBuild
+def deGoogled = true 
+def shouldSplit = false 
 
 // Pass -PwebsiteDegoogled=true when building the fdroid flavor with our own keys.
 // Official F-Droid builds omit this flag and will be labeled as "fdroid".
@@ -188,17 +188,14 @@ android {
             enable true
             reset()
             // comma-separated list of ABIs to generate apks for
-            include 'x86', 'armeabi-v7a', 'arm64-v8a', 'x86_64'
+            'arm64-v8a'
             // generates a universal APK in addition to per-ABI apks
             universalApk true
         }
     }
     // version codes for each ABI variant
     project.ext.versionCodes = [
-            'armeabi-v7a': 2,
             'arm64-v8a'  : 3,
-            'x86'        : 8,
-            'x86_64'     : 9
     ]
 
     androidComponents {
@@ -235,10 +232,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             ndk {
                 // Use SYMBOL_TABLE to reduce symbol file size significantly
-                debugSymbolLevel 'SYMBOL_TABLE'
+                debugSymbolLevel 'NONE'
                 // Only process symbols for the most common ABIs to avoid Crashlytics index errors
                 // This reduces the total symbol data Crashlytics needs to process
-                abiFilters 'arm64-v8a', 'armeabi-v7a', 'x86_64'
+                abiFilters 'arm64-v8a'
             }
             if (!deGoogled) {
                 firebaseCrashlytics {
@@ -253,6 +250,7 @@ android {
                 println("Normal build: using config signing config")
                 signingConfig signingConfigs.config
             }
+            signingConfig = signingConfigs.getByName("debug")
         }
         leakCanary {
             matchingFallbacks = ['debug']
@@ -276,10 +274,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             ndk {
                 // Use SYMBOL_TABLE to reduce symbol file size significantly
-                debugSymbolLevel 'SYMBOL_TABLE'
+                debugSymbolLevel 'FULL'
                 // Only process symbols for the most common ABIs to avoid Crashlytics index errors
                 // This reduces the total symbol data Crashlytics needs to process
-                abiFilters 'arm64-v8a', 'armeabi-v7a', 'x86_64'
+                abiFilters 'arm64-v8a'
             }
             if (!deGoogled) {
                 firebaseCrashlytics {
