@@ -57,7 +57,7 @@ import com.celzero.bravedns.util.Constants
         CountryConfig::class,
         SponsorEntity::class
     ],
-    version = 32,
+    version = 33,
     exportSchema = false
 )
 @TypeConverters(Converters::class)
@@ -172,6 +172,7 @@ abstract class AppDatabase : RoomDatabase() {
                 .addMigrations(MIGRATION_29_30)
                 .addMigrations(MIGRATION_30_31)
                 .addMigrations(MIGRATION_31_32)
+                .addMigrations(MIGRATION_32_33)
                 .build()
 
         private val roomCallback: Callback =
@@ -1350,6 +1351,22 @@ abstract class AppDatabase : RoomDatabase() {
                         LOG_TAG_APP_DB,
                         "MIGRATION_31_32: added AppInfo.notes and enforced max length"
                     )
+                }
+            }
+
+        internal val MIGRATION_32_33: Migration =
+            object : Migration(32, 33) {
+                override fun migrate(db: SupportSQLiteDatabase) {
+                    db.execSQL("DELETE FROM DNSCryptEndpoint")
+                    db.execSQL("DELETE FROM DNSCryptRelayEndpoint")
+                    db.execSQL("DELETE FROM DNSProxyEndpoint WHERE id NOT IN (2, 3, 5, 6)")
+                    db.execSQL("DELETE FROM DoHEndpoint WHERE id NOT IN (1, 7)")
+                    db.execSQL("DELETE FROM DoTEndpoint")
+                    db.execSQL("DELETE FROM ODoHEndpoint")
+                    db.execSQL("DELETE FROM ProxyEndpoint")
+                    db.execSQL("DELETE FROM RethinkDnsEndpoint")
+                    db.execSQL("DELETE FROM TcpProxyEndpoint")
+                    Logger.i(LOG_TAG_APP_DB, "MIGRATION_32_33: pruned default DNS/proxy endpoint rows")
                 }
             }
 
