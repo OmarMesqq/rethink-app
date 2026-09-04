@@ -232,7 +232,8 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             ndk {
                 // Use SYMBOL_TABLE to reduce symbol file size significantly
-                debugSymbolLevel 'NONE'
+                debugSymbolLevel 'SYMBOL_TABLE'
+                // debugSymbolLevel 'NONE'
                 // Only process symbols for the most common ABIs to avoid Crashlytics index errors
                 // This reduces the total symbol data Crashlytics needs to process
                 abiFilters 'arm64-v8a'
@@ -335,6 +336,12 @@ android {
         coreLibraryDesugaringEnabled true
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
+    }
+
+    externalNativeBuild {
+        cmake {
+            path("src/main/cpp/CMakeLists.txt")
+        }
     }
 
     packagingOptions {

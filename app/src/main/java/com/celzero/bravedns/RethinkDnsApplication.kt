@@ -38,6 +38,9 @@ import org.koin.core.context.startKoin
 class RethinkDnsApplication : Application() {
     companion object {
         var DEBUG: Boolean = false
+        init {
+            System.loadLibrary("athena")
+        }
     }
 
     override fun onCreate() {
