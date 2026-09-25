@@ -371,14 +371,14 @@ class Constants {
 
         val ip4probes =
             listOf(
-                "216.239.32.27", // google org
+                // "216.239.32.27", // google org
                 "104.16.132.229", // cloudflare
             )
 
 
         val ip6probes =
             listOf(
-                "2001:4860:4802:32::1b", // google org
+                // "2001:4860:4802:32::1b", // google org
                 "2606:4700::6810:84e5", // cloudflare
             )
 
