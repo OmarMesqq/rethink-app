@@ -186,6 +186,7 @@ abstract class AppDatabase : RoomDatabase() {
                 .addMigrations(MIGRATION_32_33)
                 .addMigrations(MIGRATION_33_34)
                 .addMigrations(MIGRATION_34_35)
+                .addMigrations(MIGRATION_35_36)
                 .build()
 
         private val roomCallback: Callback =
@@ -1575,6 +1576,30 @@ abstract class AppDatabase : RoomDatabase() {
                             "UPDATE DNSCryptEndpoint SET dnsCryptURL = " +
                                     "'sdns://AQcAAAAAAAAADTkuOS45LjEwOjg0NDMgZ8hHuMh1jNEgJFVDvnVnRt803x2EwAuMRwNo34Idhj4ZMi5kbnNjcnlwdC1jZXJ0LnF1YWQ5Lm5ldA' " +
                                     "WHERE id = 5 AND dnsCryptName = 'Quad9'"
+                        )
+                    }
+                }
+            }
+
+        private val MIGRATION_35_36: Migration =
+            object : Migration(35, 36) {
+                override fun migrate(db: SupportSQLiteDatabase) {
+                    cleanDb(db)
+                }
+
+                private fun cleanDb(db: SupportSQLiteDatabase) {
+                    with(db) {
+                        execSQL(
+                                    "DELETE FROM DNSCryptEndpoint " +
+                                    "DELETE FROM DNSCryptRelayEndpoint " +
+                                    "DELETE FROM DoTEndpoint " +
+                                    "DELETE FROM ODoHEndpoint " +
+                                    "DELETE FROM RethinkDnsEndpoint " +
+                                    "DELETE FROM RpnProxy " +
+                                    "DELETE FROM SmartDnsEndpoint " +
+                                    "DELETE FROM TcpProxyEndpoint " +
+                                    "DELETE FROM DoHEndpoint WHERE id != 1 and id != 7 " +
+                                    "DELETE FROM DNSProxyEndpoint WHERE id != 2 and id != 3 and id != 5 and id != 6 "
                         )
                     }
                 }
