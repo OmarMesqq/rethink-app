@@ -188,7 +188,7 @@ class PersistentState(context: Context) : SimpleKrate(context), KoinComponent {
 
     // whether to drop packets when the source app originating the reqs couldn't be determined
     private var _blockUnknownConnections by
-        booleanPref("block_unknown_connections").withDefault<Boolean>(false)
+        booleanPref("block_unknown_connections").withDefault<Boolean>(true)
 
     // whether user has enable on-device blocklists
     var blocklistEnabled by
@@ -215,7 +215,7 @@ class PersistentState(context: Context) : SimpleKrate(context), KoinComponent {
     // user set among AppConfig.DnsType enum; RETHINK_REMOTE is default which is Rethink-DoH
     var dnsType by
         intPref("dns_type")
-            .withDefault<Int>(AppConfig.DnsType.RETHINK_REMOTE.type)
+            .withDefault<Int>(AppConfig.DnsType.DOH.type)
 
     // whether the app must attempt to startup on reboot if it was running before shutdown
     var prefAutoStartBootUp by booleanPref("auto_start_on_boot").withDefault<Boolean>(true)
@@ -228,7 +228,7 @@ class PersistentState(context: Context) : SimpleKrate(context), KoinComponent {
         booleanPref("background_mode").withDefault<Boolean>(false)
 
     // whether to check for app updates once-a-week (on website / play-store builds)
-    var checkForAppUpdate by booleanPref("check_for_app_update").withDefault<Boolean>(true)
+    var checkForAppUpdate by booleanPref("check_for_app_update").withDefault<Boolean>(false)
 
     // last connected dns label name and url
     var connectedDnsName by
@@ -264,7 +264,7 @@ class PersistentState(context: Context) : SimpleKrate(context), KoinComponent {
     var showWhatsNewChip by booleanPref("show_whats_new_chip").withDefault<Boolean>(true)
 
     // block dns which are not resolved by app
-    private var _disallowDnsBypass by booleanPref("disallow_dns_bypass").withDefault<Boolean>(false)
+    private var _disallowDnsBypass by booleanPref("disallow_dns_bypass").withDefault<Boolean>(true)
 
     // trap all packets on port 53 to be sent to a dns endpoint or just the packets sent to vpn's
     // dns-ip
@@ -363,7 +363,7 @@ class PersistentState(context: Context) : SimpleKrate(context), KoinComponent {
     var goLoggerLevel by longPref("go_logger_level").withDefault<Long>(3)
 
     // log lifespan, default 7 days
-    var logLifespan by longPref("log_lifespan").withDefault<Long>(LogLifespan.SEVEN_DAYS.id)
+    var logLifespan by longPref("log_lifespan").withDefault<Long>(LogLifespan.TWELVE_HOURS.id)
 
     // firewall bubble feature toggle
     var firewallBubbleEnabled by booleanPref("pref_firewall_bubble_enabled").withDefault<Boolean>(false)
@@ -416,7 +416,7 @@ class PersistentState(context: Context) : SimpleKrate(context), KoinComponent {
     var useSystemDnsForUndelegatedDomains by booleanPref("use_system_dns_for_undelegated_domains").withDefault<Boolean>(false)
 
     // different modes the rpn proxy can function, see enum RpnMode
-    var rpnMode by intPref("rpn_mode").withDefault<Int>(1)
+    var rpnMode by intPref("rpn_mode").withDefault<Int>(0)
 
     // current rpn state, see enum RpnState
     var rpnState by intPref("rpn_state").withDefault<Int>(RpnProxyManager.RpnState.DISABLED.id)
@@ -824,7 +824,7 @@ class PersistentState(context: Context) : SimpleKrate(context), KoinComponent {
     // maximum memory the go engine can consume in bytes (ideally value*1024*1024)
     var goMaxMemory by longPref(GO_MAX_MEMORY).withDefault<Long>(-1L)
 
-    var blockDnsForUnknownApp by booleanPref("block_dns_for_unknown_app").withDefault<Boolean>(false)
+    var blockDnsForUnknownApp by booleanPref("block_dns_for_unknown_app").withDefault<Boolean>(true)
 
     var showRethinkBlockNotification by booleanPref("show_rethink_block_notification").withDefault<Boolean>(true)
 
