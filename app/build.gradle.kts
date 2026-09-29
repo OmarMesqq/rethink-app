@@ -223,7 +223,7 @@ android {
             isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                "src/main/keepRules/app.keep"
             )
             ndk {
                 // Use SYMBOL_TABLE to reduce symbol file size significantly
@@ -267,7 +267,7 @@ android {
             resValue("string", "app_name", "Rethink(α)")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                "src/main/keepRules/app.keep"
             )
         }
         create("releaseDebug") {
@@ -277,7 +277,7 @@ android {
             signingConfig = signingConfigs.getByName("debug")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                "src/main/keepRules/app.keep"
             )
             ndk {
                 debugSymbolLevel = "SYMBOL_TABLE"
