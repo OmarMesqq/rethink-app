@@ -29,8 +29,8 @@ val alphaBuild = taskNames.contains("alpha")
 // check for fdroidserver value is set in system env
 val fdroidBuildServer: String? = System.getenv("fdroidserver")
 val isFdroidBuildServer = !fdroidBuildServer.isNullOrEmpty() && fdroidBuildServer != "null"
-val deGoogled = !playBuild || fdroidBuild || isFdroidBuildServer || alphaBuild
-val shouldSplit = !alphaBuild
+val deGoogled = true
+val shouldSplit = false
 
 // Pass -PwebsiteDegoogled=true when building the fdroid flavor with our own keys.
 // Official F-Droid builds omit this flag and will be labeled as "fdroid".
@@ -100,10 +100,10 @@ val keystorePropertiesFile = rootProject.file("keystore.properties")
 val keystoreProperties = Properties()
 
 val abiVersionCodes = mapOf(
-    "armeabi-v7a" to 2,
+    // "armeabi-v7a" to 2,
     "arm64-v8a" to 3,
-    "x86" to 8,
-    "x86_64" to 9
+    // "x86" to 8,
+    // "x86_64" to 9
 )
 
 // https://github.com/celzero/rethink-app/issues/1032
@@ -178,11 +178,19 @@ android {
 
     signingConfigs {
         create("config") {
-            keyAlias = keystoreProperties.getProperty("keyAlias", "")
-            keyPassword = keystoreProperties.getProperty("keyPassword", "")
-            storeFile =
-                keystoreProperties.getProperty("storeFile")?.let { file(it) } ?: file("/dev/null")
-            storePassword = keystoreProperties.getProperty("storePassword", "")
+            val storeFilePath = keystoreProperties.getProperty("storeFile")
+            if (storeFilePath != null) {
+                keyAlias = keystoreProperties.getProperty("keyAlias", "")
+                keyPassword = keystoreProperties.getProperty("keyPassword", "")
+                storeFile = file(storeFilePath)
+                storePassword = keystoreProperties.getProperty("storePassword", "")
+            } else {
+                val debug = signingConfigs.getByName("debug")
+                keyAlias = debug.keyAlias
+                keyPassword = debug.keyPassword
+                storeFile = debug.storeFile
+                storePassword = debug.storePassword
+            }
         }
         // archive.is/wlwD8
         create("alpha") {
@@ -233,10 +241,10 @@ android {
             }
             ndk {
                 // Use SYMBOL_TABLE to reduce symbol file size significantly
-                debugSymbolLevel = "SYMBOL_TABLE"
+                debugSymbolLevel = "NONE"
                 // Only process symbols for the most common ABIs to avoid Crashlytics index errors
                 // This reduces the total symbol data Crashlytics needs to process
-                abiFilters.addAll(listOf("arm64-v8a", "armeabi-v7a", "x86_64"))
+                abiFilters.addAll(listOf("arm64-v8a"))
             }
             if (!deGoogled) {
                 // nativeSymbolUploadEnabled is only available when the crashlytics plugin is applied
@@ -259,11 +267,12 @@ android {
             } else {
                 signingConfigs.getByName("config")
                     .takeIf { keystorePropertiesFile.exists() && !keystoreProperties.getProperty("storeFile").isNullOrEmpty() }
-            }
+            } ?: signingConfigs.getByName("debug")
             // IzzyOnDroid builds ship as com.celzero.bravedns.izzy
             if (isIzzyBuild) {
                 applicationIdSuffix = ".izzy"
             }
+            signingConfigs.getByName("debug")
         }
         create("leakCanary") {
             matchingFallbacks += listOf("debug")
