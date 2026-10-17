@@ -376,7 +376,7 @@
     <string name="brave_dns_connect_mode_change_firewall" translatable="true">Choose Mode.</string>
     <string name="brave_dns_connect_mode_change_dns" translatable="true">Choose Mode.</string>
 
-    <string name="default_dns_name" translatable="true">RDNS Default</string>
+    <string name="default_dns_name" translatable="true">Cloudflare</string>
 
     <string name="custom_url_error_invalid_url" translatable="true">Invalid URL</string>
 
