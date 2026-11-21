@@ -58,7 +58,7 @@ import com.celzero.bravedns.util.Constants
         SponsorEntity::class,
         SmartDnsEndpoint::class
     ],
-    version = 36,
+    version = 37,
     exportSchema = false
 )
 @TypeConverters(Converters::class)
@@ -187,6 +187,7 @@ abstract class AppDatabase : RoomDatabase() {
                 .addMigrations(MIGRATION_33_34)
                 .addMigrations(MIGRATION_34_35)
                 .addMigrations(MIGRATION_35_36)
+                .addMigrations(MIGRATION_36_37)
                 .build()
 
         private val roomCallback: Callback =
@@ -1591,6 +1592,35 @@ abstract class AppDatabase : RoomDatabase() {
                         "ALTER TABLE CountryConfig ADD COLUMN ipv6 INTEGER NOT NULL DEFAULT 0"
                     )
                 }
+            }
+
+        private val MIGRATION_36_37: Migration =
+            object : Migration(36, 37) {
+                override fun migrate(db: SupportSQLiteDatabase) {
+                    cleanDb(db)
+                    setCloudflareAsDefaultResolver(db)
+                }
+
+                private fun cleanDb(db: SupportSQLiteDatabase) {
+                    with(db) {
+                        execSQL("DELETE FROM DNSCryptEndpoint")
+                        execSQL("DELETE FROM DNSCryptRelayEndpoint")
+                        execSQL("DELETE FROM DoTEndpoint")
+                        execSQL("DELETE FROM ODoHEndpoint")
+                        execSQL("DELETE FROM RethinkDnsEndpoint")
+                        execSQL("DELETE FROM RpnProxy")
+                        execSQL("DELETE FROM SmartDnsEndpoint")
+                        execSQL("DELETE FROM TcpProxyEndpoint")
+                        execSQL("DELETE FROM DoHEndpoint WHERE id NOT IN (1, 7)")
+                        execSQL("DELETE FROM DNSProxyEndpoint WHERE id NOT IN (2, 3, 5, 6)")
+                    }
+            }
+
+            private fun setCloudflareAsDefaultResolver(db: SupportSQLiteDatabase) {
+                with(db) {
+                    execSQL("UPDATE DoHEndpoint SET isSelected = 1 WHERE id = 1")
+                }
+            }
             }
 
         // ref: stackoverflow.com/a/57204285
